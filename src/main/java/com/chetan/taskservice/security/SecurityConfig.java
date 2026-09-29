@@ -30,7 +30,9 @@ public class SecurityConfig {
                 )
 
                 .authorizeHttpRequests(auth ->
-                        auth.anyRequest().authenticated()
+                        auth
+                                .requestMatchers("/actuator/health/**").permitAll()
+                                .anyRequest().authenticated()
                 )
 
                 .addFilterBefore(
